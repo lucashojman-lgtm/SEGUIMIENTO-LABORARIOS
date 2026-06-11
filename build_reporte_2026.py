@@ -487,3 +487,34 @@ function sel(i){{
 </body></html>"""
 open("Reporte_Labos_2026.html","w",encoding="utf-8").write(HTML)
 print("HTML OK -> Reporte_Labos_2026.html")
+
+# =================== CSV (layout original) -> Google Sheet nativo ===================
+import csv as _csv
+def _n(x,d=2):
+    if x is None: return ""
+    if isinstance(x,int): return str(x)
+    return f"{x:.{d}f}"
+hdr=["Código","Programa","Laboratorio","Lab. Propio","Avanter Proveedor",
+     "FC POR AVANTER","Precio","Actualización","Status"]
+for m in MESES+["ANUAL (ene-abr)"]:
+    hdr+=[f"{m} TRX",f"{m} % TRX MES",f"{m} MONTO FC",f"{m} MONTO X TRX"]
+rows=[["REPORTE LABOS 2026 - Seguimiento por Cliente (ene-abr) | Montos ARS sin IVA | s/d Avanter marzo y feb de Colgate/MaxVision/SidusFarma/Ceoderma"],[],hdr]
+for cliente,labs in GRUPOS:
+    rows.append([f"CLIENTE: {cliente}"])
+    for L in labs:
+        row=[L["cod"],L["prog"],L["lab"],L["propio"],L["avp"],L["fc"],L["precio"],L["act"],L["status"]]
+        for m in MESES:
+            v=L["m"].get(m); trx=monto=None
+            if v: trx,monto=v
+            p=(trx/tot_trx[m]) if (trx and tot_trx[m]) else None
+            x=(monto/trx) if (trx and monto) else None
+            row+=[_n(trx,0),(_n(p*100,4)+"%" if p is not None else ""),_n(monto),_n(x)]
+        at,am=lab_anual(L)
+        ap=at/tot_anual_trx if (at and tot_anual_trx) else None
+        ax=am/at if (at and am) else None
+        row+=[_n(at,0),(_n(ap*100,4)+"%" if ap is not None else ""),_n(am),_n(ax)]
+        rows.append(row)
+with open("Reporte_Labos_2026_GoogleSheet.csv","w",newline="",encoding="utf-8") as f:
+    w=_csv.writer(f)
+    for r in rows: w.writerow(r)
+print("CSV OK -> Reporte_Labos_2026_GoogleSheet.csv")
