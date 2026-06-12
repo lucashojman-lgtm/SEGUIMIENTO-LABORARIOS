@@ -24,6 +24,10 @@
 - El archivo genérico «Soporte Facturación <Mes> 2026.xlsx» es **BAYER** (0,5% PVP con mínimo).
 - Ceoderma operó también vía Avanter en enero (355 TRX, ya en el consolidado Avanter).
 - Sidus Dermo y Panalab digital suman bonos + uso de plataforma + WhatsApp (USD 0,10 × dólar BNA).
+- **Sidus DC (Dermocosmética) y Sidus S.A. (Farma/Convida) son DOS clientes distintos:
+  siempre mostrarlos separados** (sin subtotal conjunto "SIDUS").
+- Panalab se muestra en 3 líneas: **Digital, Digital Papel y Papel** (mapeo de montos
+  a confirmar con Lucas — definición pendiente, armado en pausa 12/06/2026).
 - Montos en ARS sin IVA. TRX = transacciones/envases aprobados del mes.
 
 ## Estado de datos (al 12/06/2026, ene–abr)
