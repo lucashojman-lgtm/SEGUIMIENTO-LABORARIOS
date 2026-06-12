@@ -40,10 +40,10 @@ def dr(cod, prog, lab, propio, avp, precio, act, status, m):
 # ---------------- DATOS POR CLIENTE ----------------
 GRUPOS = [
  ("ASTRAZENECA", [
-   dr("5005","Programa Elegir Salud (AZ)","ASTRAZENECA","SI","SI",
-      "Uso plataforma MAT + TRX x valor unitario","Mensual por IPC Caba","PRODUCTIVO",
-      {"ENERO":(15730,3164020.00),"FEBRERO":(13198,2976652.00),
-       "MARZO":(14775,3447758.00),"ABRIL":(14849,3898957.00)}),
+   dr("5005","Programa Elegir Salud (AZ)","ASTRAZENECA","SI","NO",
+      "Presupuesto Elegir Salud: operación + call center + cápitas + auditorías + supervisor CS","Mensual por IPC CABA","PRODUCTIVO",
+      {"ENERO":(15730,20929743.55),"FEBRERO":(13198,19689476.25),
+       "MARZO":(14775,21612629.37),"ABRIL":(14849,21786516.13)}),
  ]),
  ("BAYER", [
    dr("5015","Programa Más Simple (Bayer)","BAYER","SI","NO",
@@ -742,8 +742,8 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <li><b>Avanter</b> explica {pctf(AV_M/GT_FC)} de la facturación; Andrómaco concentra más de la mitad de sus TRX.</li>
 <li><b>Panalab</b> es el cliente directo más grande ({m0(66225682.10)}): el papel manual crece todos los meses (+67% TRX abr vs ene) y la plataforma digital aporta ~$6,6–8,6 M/mes por WhatsApp + servicio.</li>
 <li><b>Sidus Dermo</b> casi duplicó TRX en abril (2.333 → 4.879) e incorporó armado de dinámicas.</li>
-<li><b>AZ</b> subió el abono MAT a $ 2.518.000 y el VU a $93 en abril: +23% de facturación vs enero.</li>
-<li>La caída de abril vs enero en el total (−10%) se explica por menos TRX Avanter (881 mil → 588 mil → 532 mil → 488 mil), parcialmente compensada por el VU $74 → $93.</li>
+<li><b>AZ (Elegir Salud)</b> es el mayor cliente directo: ~$ 20–22 M/mes por presupuesto integral (operación + call center + cápitas + auditorías + supervisor CS). Febrero bajó a $ 19,7 M por menos cápitas activas adicionales; +4% abr vs ene por ajuste IPC CABA.</li>
+<li>La caída de abril vs enero en el total (−9%) se explica por menos TRX Avanter (881 mil → 588 mil → 532 mil → 488 mil), parcialmente compensada por el VU $74 → $93; AZ se mantiene estable (~$ 21 M/mes).</li>
 </ul></div>
 </div>
 </div>
@@ -769,7 +769,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <li><b>Mínimo Sidus Farma:</b> $ 766.721,67 (aplicó en ene/mar/abr: el 1% PVP quedó debajo).</li>
 <li><b>Mínimo Bayer:</b> $ 801.411,81 (ene–feb) / $ 844.447,62 (mar–abr). No aplicó: facturó por 0,50% PVP.</li>
 <li><b>Dólar BNA (WhatsApp USD 0,10):</b> ene $1.390 · feb $1.420 · mar $1.380 · abr $1.410.</li>
-<li><b>Abono AZ uso plataforma MAT:</b> $ 2.000.000 (ene–mar) → $ 2.518.000 (abr).</li>
+<li><b>Operación AZ (Elegir Salud):</b> $ 7.961.858 (ene) → $ 8.208.676 (feb) → $ 8.422.101 (mar) → $ 8.674.764 (abr), ajuste mensual IPC CABA. Total presupuesto: $ 20,93 / 19,69 / 21,61 / 21,79 M.</li>
 </ul></div>
 <div class="card"><b style="color:var(--azul1)">% sobre PVP por cliente</b>
 <ul class="clean">
@@ -785,7 +785,8 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <div class="card"><ul class="clean">
 <li><b>Avanter:</b> «Facturación Avanter Enero/Febrero/Marzo/Abril 2026.xlsx» (TRX por laboratorio + VU + altas).</li>
 <li><b>Bayer:</b> «Soporte Facturación Enero/Febrero/Marzo/Abril 2026.xlsx» (resumen 0,5% PVP con mínimo).</li>
-<li><b>AZ, Sidus Dermo, BIU, Panalab digital:</b> «Facturación Sidus DC, Biu, Panalab, AZ &lt;mes&gt; 2026.xlsx».</li>
+<li><b>AZ (Elegir Salud):</b> «PRESUPUESTO FACTURACION &lt;MES&gt; 2026 - PROGRAMA ELEGIR SALUD» / Proforma editable con ajuste IPC (operación + call center + cápitas + auditorías + supervisor CS).</li>
+<li><b>Sidus Dermo, BIU, Panalab digital:</b> «Facturación Sidus DC, Biu, Panalab, AZ &lt;mes&gt; 2026.xlsx».</li>
 <li><b>Panalab papel:</b> «Bonos Papel Panalab Manual &lt;mes&gt; 2026.xlsx».</li>
 <li><b>Colgate / Max Vision / Sidus Farma / Ceoderma / Lazar:</b> soportes «Soporte Facturación &lt;MES&gt; 2026_&lt;cliente&gt;.xlsx» (carátula).</li>
 <li><b>Health Care:</b> «Facturación Health Care.xlsx» + «Proformas - Resumen Valores sin adjunto».</li>

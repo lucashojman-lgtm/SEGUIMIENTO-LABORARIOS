@@ -27,6 +27,10 @@
 - Montos en ARS sin IVA. TRX = transacciones/envases aprobados del mes.
 
 ## Estado de datos (al 12/06/2026, ene–abr)
-- Total: $299.622.303,70 · 3.004.959 TRX. Avanter completo los 4 meses.
+- Total: $370.153.282,00 · 3.004.959 TRX. Avanter completo los 4 meses.
+- AstraZeneca (Programa Elegir Salud): se carga el presupuesto integral mensual (operación +
+  call center + cápitas + auditorías + supervisor CS), NO la línea de Avanter. Totales:
+  ene $20.929.743,55 · feb $19.689.476,25 · mar $21.612.629,37 · abr $21.786.516,13.
+  Fuente: «PRESUPUESTO FACTURACION ‹MES› 2026 - PROGRAMA ELEGIR SALUD» / Proforma editable IPC CABA.
 - Faltantes: feb de Colgate/Max Vision/Sidus Farma/Ceoderma; Ceoderma mar–abr;
   Health Care ene (confirmar $449.969,36 + $371.875,50) y mar + TRX; Lazar feb–mar.
