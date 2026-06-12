@@ -51,21 +51,31 @@ GRUPOS = [
       {"ENERO":(1154,972221.92),"FEBRERO":(1090,941267.72),
        "MARZO":(1181,1044493.17),"ABRIL":(1178,1075303.74)}),
  ]),
- ("SIDUS", [
-   dr("5040","Sidus Dermo (Bonos + Plataforma digital)","SIDUS DERMO","SI","SI",
+ # Sidus DC y Sidus S.A. son DOS clientes distintos: siempre separados (regla Lucas 12/06/2026)
+ ("SIDUS DC (Dermocosmética)", [
+   dr("5040","Sidus Dermo (Bonos + Plataforma digital)","SIDUS DC","SI","SI",
       "Valor fijo por operación + plataforma + WhatsApp","Mensual por IPC Indec. Valor por TRX","PRODUCTIVO",
       {"ENERO":(2522,1282897.00),"FEBRERO":(2281,1255491.00),
        "MARZO":(2333,1330813.00),"ABRIL":(4445,3633862.44)}),
-   dr("5041","Programa Convida (Sidus Farma)","SIDUS FARMA","SI","NO",
+ ]),
+ ("SIDUS S.A.", [
+   dr("5041","Programa Convida (Sidus Farma)","SIDUS S.A.","SI","NO",
       "Automático por 1,00% PVP. Con mínimo $766.721,67","Mensual","PRODUCTIVO",
-      {"ENERO":(688,766721.67),"FEBRERO":(None,131941.00),
+      # Feb: TRX bajo el límite -> aplica el monto mínimo establecido (FC emitida $131.941 a revisar)
+      {"ENERO":(688,766721.67),"FEBRERO":(None,766721.67),
        "MARZO":(615,766721.67),"ABRIL":(894,766721.67)}),
  ]),
+ # Panalab en 3 líneas (regla Lucas): Digital y Papel Digital salen del
+ # "Soporte Facturación Panalab MES <MES> 2026"; Papel Manual de su archivo propio.
  ("PANALAB", [
-   dr("5080","Panalab Digital (Bonos + Plataforma)","PANALAB","SI","SI",
-      "On line 0,6% PVP + servicio + WhatsApp","Mensual","PRODUCTIVO",
-      {"ENERO":(4196,7099101.00),"FEBRERO":(3565,6836393.00),
-       "MARZO":(4586,8378215.00),"ABRIL":(4586,9065584.00)}),
+   dr("5080","Panalab Digital (Bonos Digitales + Plataforma)","PANALAB","SI","NO",
+      "0,6% PVP (0,2% emisión + 0,4% dispensa) + uso plataforma + WhatsApp USD 0,13","Plataforma mensual por IPC CABA","PRODUCTIVO",
+      {"ENERO":(4789,10128738.40),"FEBRERO":(4059,9689434.37),
+       "MARZO":(5266,11989991.61),"ABRIL":(5583,12610730.90)}),
+   dr("5081","Panalab Papel Digital (Bonos Papel On Line)","PANALAB","SI","NO",
+      "Automático por 0,40% PVP por dispensa validada on line","Mensual","PRODUCTIVO",
+      {"ENERO":(94201,16119709.65),"FEBRERO":(87177,15825258.02),
+       "MARZO":(104514,18719527.89),"ABRIL":(105587,20068567.46)}),
    dr("5081","Panalab Papel Manual","PANALAB","SI","NO",
       "Registros procesados + cajas","Mensual por IPC Caba","PRODUCTIVO",
       {"ENERO":(63271,6443666.51),"FEBRERO":(82475,8320434.77),
@@ -406,7 +416,7 @@ kpis=f"""
  <div class="kpi"><div class="kpi-t">Facturación ene–abr</div><div class="kpi-v">{MM(GT_FC)}</div>
    <div class="kpi-s">{m2(GT_FC)} · ingreso por servicio · 4 meses completos</div></div>
  <div class="kpi"><div class="kpi-t">FC emitidas ene–abr</div><div class="kpi-v">$ 455,0 M</div>
-   <div class="kpi-s">$ 454.995.712 en facturas emitidas a laboratorios (incluye reintegro de bonos Panalab; sin Iqvia) · conciliación al peso en «Análisis»</div></div>
+   <div class="kpi-s">$ 454.995.712 en facturas emitidas a laboratorios (sin Iqvia) · la diferencia de −$ 6,9 M está conciliada al peso en «Análisis»</div></div>
  <div class="kpi"><div class="kpi-t">Transacciones informadas</div><div class="kpi-v">{n0(GT_TRX)}</div>
    <div class="kpi-s">TRX aprobadas ene–abr · directos {n0(DIR_TRX)} + Avanter {n0(AV_T)}</div></div>
  <div class="kpi"><div class="kpi-t">Mejor mes</div><div class="kpi-v">{MESN[mejor["mes"]]}</div>
@@ -464,8 +474,8 @@ alertas="""
 <div class="alert">
  <b>⚠️ Datos pendientes que afectan los totales</b>
  <ul>
-  <li><b>Ceoderma:</b> feb $ 0 facturado, mar–abr s/d.</li>
-  <li><b>TRX s/d</b> en Colgate feb, Max Vision feb, Sidus Farma feb, Health Care y Lazar feb–mar.</li>
+  <li><b>FC a revisar:</b> Panalab abril (emitida $ 28,3 M vs soporte $ 32,7 M) · Sidus S.A. feb (emitida $ 131.941 vs mínimo $ 766.722).</li>
+  <li><b>Ceoderma:</b> feb $ 0 facturado, mar–abr s/d · <b>TRX s/d</b> en Colgate feb, Max Vision feb, Sidus S.A. feb, Health Care y Lazar feb–mar.</li>
  </ul>
  <small>✅ Avanter marzo ya incorporado (532.345 TRX × $74 = $ 39.393.530). El detalle completo está en «Fuentes y Datos».</small>
 </div>"""
@@ -737,19 +747,19 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <tbody>{mat_rows}</tbody></table></div>
 
 <h2>Conciliación: ingreso por servicio vs facturación emitida</h2>
-<p class="note">Este reporte mide el <b>ingreso por servicio de laboratorios</b>. La planilla «Seguimiento Facturación» registra <b>todas las FC emitidas</b> (acá ordenadas por mes de servicio), que además incluyen el reintegro de bonos de Panalab y otras FC. Las dos cifras concilian al peso:</p>
+<p class="note">Este reporte mide el <b>ingreso por servicio de laboratorios</b> según los soportes oficiales. La planilla «Seguimiento Facturación» registra <b>todas las FC emitidas</b> (acá ordenadas por mes de servicio). Las dos cifras concilian al peso:</p>
 <div class="scroll" style="max-height:none"><table>
 <thead><tr><th>Concepto</th><th>Enero</th><th>Febrero</th><th>Marzo</th><th>Abril</th><th>Total ene–abr</th></tr></thead>
 <tbody>
-<tr><td class="l"><b>Ingreso por servicio (este reporte)</b></td><td class="n">$ 107.377.615</td><td class="n">$ 84.963.926</td><td class="n">$ 86.935.488</td><td class="n">$ 98.171.859</td><td class="n b">$ 377.448.888</td></tr>
+<tr><td class="l"><b>Ingreso por servicio (este reporte)</b></td><td class="n">$ 126.526.962</td><td class="n">$ 104.277.006</td><td class="n">$ 109.266.793</td><td class="n">$ 121.785.573</td><td class="n b">$ 461.856.334</td></tr>
 <tr><td class="l"><b>Total FC emitidas a laboratorios</b> (sin Iqvia)</td><td class="n">$ 125.244.066</td><td class="n">$ 100.471.491</td><td class="n">$ 111.365.685</td><td class="n">$ 117.914.470</td><td class="n b">$ 454.995.712</td></tr>
-<tr class="tot"><td class="l">Diferencia</td><td class="n">$ 17.866.451</td><td class="n">$ 15.507.565</td><td class="n">$ 24.430.197</td><td class="n">$ 19.742.611</td><td class="n">$ 77.546.824</td></tr>
+<tr class="tot"><td class="l">Diferencia (FC emitidas − reporte)</td><td class="n">−$ 1.282.896</td><td class="n">−$ 3.805.515</td><td class="n">+$ 2.098.892</td><td class="n">−$ 3.871.103</td><td class="n">−$ 6.860.622</td></tr>
 </tbody></table></div>
-<div class="card"><b style="color:var(--azul1)">¿De dónde sale la diferencia de $ 77,5 M?</b>
+<div class="card"><b style="color:var(--azul1)">¿De dónde sale la diferencia de −$ 6,9 M?</b>
 <ul class="clean">
-<li><b>Panalab +$ 79.401.562:</b> las FC completas por mes de servicio ($ 32,7 / 33,8 / 40,0 / 39,1 M = $ 145.627.244) incluyen el <b>reintegro de bonos</b> que se devuelve a las farmacias; el reporte computa solo el fee/servicio de World Salud ($ 66.225.682).</li>
-<li><b>Sidus Dermo −$ 2.828.470:</b> nota de crédito de febrero (−$ 1.888.974) y diferencias de timing entre el soporte y las FC de ene–mar.</li>
-<li><b>Sidus Farma +$ 1.000.001:</b> FC adicionales de $ 500.000 por servicio de marzo y de abril que no están en el reporte (concepto a confirmar).</li>
+<li><b>Panalab −$ 4.371.103 (abril):</b> la FC 0002-00000369 se emitió por $ 28.308.194 contra un soporte de $ 32.679.298 — diferencia a revisar. Ene–mar concilian al peso (las FC «grandes» de Panalab son Digital + Papel On Line, no reintegros).</li>
+<li><b>Sidus DC −$ 2.828.470:</b> enero sin FC emitida ($ 1.282.897 según soporte), NC de febrero (−$ 1.888.974) y marzo facturado $ 2.929.705 vs soporte $ 1.330.813 (timing entre soporte y FC).</li>
+<li><b>Sidus S.A. +$ 365.220:</b> FC adicionales de $ 500.000 por servicio de marzo y abril (+$ 1.000.001, concepto a confirmar) y febrero facturado $ 131.941 contra el mínimo establecido de $ 766.722 (−$ 634.781, a revisar/refacturar).</li>
 <li><b>Avanter −$ 26.270:</b> Ceoderma enero (355 TRX) está dentro del consolidado Avanter del reporte; en la planilla se facturó por separado.</li>
 <li>Restos de redondeo de la planilla: ±$ 2.</li>
 </ul>
@@ -763,10 +773,10 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <div class="card"><b style="color:var(--azul1)">Lecturas rápidas</b>
 <ul class="clean">
 <li><b>Avanter</b> explica {pctf(AV_M/GT_FC)} de la facturación; Andrómaco concentra más de la mitad de sus TRX.</li>
-<li><b>Panalab</b> es el segundo cliente directo ({m0(66225682.10)}): el papel manual crece todos los meses (+67% TRX abr vs ene) y la plataforma digital aporta ~$6,6–8,6 M/mes por WhatsApp + servicio.</li>
-<li><b>Sidus Dermo</b> creció fuerte en abril: 2.333 → 4.445 TRX y $ 1,33 M → $ 3,63 M (transaccional + plataforma + WhatsApp, FC 0002-00000370).</li>
-<li><b>AZ (Elegir Salud)</b> es el mayor cliente directo: ~$ 20–22 M/mes por presupuesto integral (operación + call center + cápitas + auditorías + supervisor CS). Febrero bajó a $ 19,7 M por menos cápitas activas adicionales; +4% abr vs ene por ajuste IPC CABA.</li>
-<li>La caída de abril vs enero en el total (−8,6%) se explica por menos TRX Avanter (881 mil → 588 mil → 532 mil → 488 mil), parcialmente compensada por el VU $74 → $93; AZ se mantiene estable (~$ 21 M/mes).</li>
+<li><b>Panalab</b> es el cliente directo más grande ({m0(149998347.40)}): Papel Digital (on line) $ 70,7 M + Digital $ 44,4 M + Papel Manual $ 34,8 M; los tres canales crecen todos los meses.</li>
+<li><b>Sidus DC</b> creció fuerte en abril: 2.333 → 4.445 TRX y $ 1,33 M → $ 3,63 M (transaccional + plataforma + WhatsApp, FC 0002-00000370).</li>
+<li><b>AZ (Elegir Salud)</b> es el segundo cliente directo: ~$ 20–22 M/mes por presupuesto integral (operación + call center + cápitas + auditorías + supervisor CS). Febrero bajó a $ 19,7 M por menos cápitas activas adicionales; +4% abr vs ene por ajuste IPC CABA.</li>
+<li>La caída de abril vs enero en el total (−3,7%) se explica por menos TRX Avanter (881 mil → 588 mil → 532 mil → 488 mil), compensada en parte por el VU $74 → $93 y el crecimiento de Panalab; AZ se mantiene estable (~$ 21 M/mes).</li>
 </ul></div>
 </div>
 </div>
@@ -777,7 +787,9 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <div class="card"><ul class="clean">
 <li>✅ <b>Avanter:</b> 4 meses completos (marzo incorporado: 532.345 TRX × $74 = $ 39.393.530).</li>
 <li>✅ <b>Completados desde la planilla «Seguimiento Facturación»</b> (montos por factura emitida; el servicio se factura al mes siguiente): Colgate feb $ 1.740.460 · Max Vision feb $ 1.188.815 · Health Care ene $ 971.876 y mar $ 904.782 · Lazar feb y mar $ 500.000 c/u. TRX de esos meses: s/d.</li>
-<li>✅ <b>Sidus Farma febrero:</b> cargado $ 131.941 (valor factura según planilla; mes por debajo del mínimo habitual). <b>Sidus Dermo abril:</b> corregido a $ 3.633.862,44 / 4.445 TRX según proforma oficial y FC 0002-00000370 (transaccional + plataforma + WhatsApp).</li>
+<li>✅ <b>Panalab corregido con sus soportes propios</b> («Soporte Facturación Panalab MES»): Digital + Papel Digital + Papel Manual. Los valores anteriores salían del archivo de costos de Avanter (proveedor). Ene–mar concilian al peso con las FC; <b>abril: FC 0002-00000369 emitida por $ 28.308.194 vs soporte $ 32.679.298 — diferencia de $ 4.371.104 a revisar</b>.</li>
+<li>✅ <b>Sidus S.A. febrero:</b> TRX bajo el límite → aplica el mínimo establecido $ 766.721,67 (la FC emitida por $ 131.941 queda a revisar/refacturar). <b>Sidus DC abril:</b> $ 3.633.862,44 / 4.445 TRX según proforma oficial y FC 0002-00000370.</li>
+<li>🟡 <b>Sidus DC ene–mar:</b> valores a validar contra proformas propias (la fuente anterior era el archivo de costos de Avanter); la planilla muestra ene sin FC, feb con NC −$ 1.888.974 y mar $ 2.929.705.</li>
 <li>🟠 <b>Ceoderma:</b> febrero $ 0 facturado (confirmado en planilla); mar–abr s/d. En enero además registró 355 TRX vía Avanter, ya incluidas en el consolidado Avanter.</li>
 <li>ℹ️ <b>Excluidos por definición:</b> Provincia ART (convenio de servicios, no laboratorio), Serdata (proveedor de procesamiento, no cliente) e <b>Iqvia Solutions</b> (pago anual, no programa de bonos mensual). Nota: «Unyc S.A.» en la planilla de facturación es la razón social de <b>BIU</b>.</li>
 </ul></div>
@@ -788,7 +800,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <ul class="clean">
 <li><b>VU Avanter:</b> Ene–Mar $74,00 · Abr $93,00 (ajuste trimestral por IPC INDEC).</li>
 <li><b>Alta laboratorio nuevo (Avanter):</b> base dic-25 $ 500.000 → IPC ene +2,90% ($ 514.500) → feb +2,90% ($ 529.420,50) → mar +3,40% (<b>$ 547.420,80</b>, aplicado a ENA y Convatec).</li>
-<li><b>Mínimo Sidus Farma:</b> $ 766.721,67 (aplicó en ene/mar/abr: el 1% PVP quedó debajo).</li>
+<li><b>Mínimo Sidus Farma:</b> $ 766.721,67 (aplicó en ene/feb/mar/abr: TRX bajo el límite o 1% PVP debajo del mínimo).</li>
 <li><b>Mínimo Bayer:</b> $ 801.411,81 (ene–feb) / $ 844.447,62 (mar–abr). No aplicó: facturó por 0,50% PVP.</li>
 <li><b>Dólar BNA (WhatsApp USD 0,10):</b> ene $1.390 · feb $1.420 · mar $1.380 · abr $1.410.</li>
 <li><b>Operación AZ (Elegir Salud):</b> $ 7.961.858 (ene) → $ 8.208.676 (feb) → $ 8.422.101 (mar) → $ 8.674.764 (abr), ajuste mensual IPC CABA. Total presupuesto: $ 20,93 / 19,69 / 21,61 / 21,79 M.</li>
@@ -808,8 +820,9 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <li><b>Avanter:</b> «Facturación Avanter Enero/Febrero/Marzo/Abril 2026.xlsx» (TRX por laboratorio + VU + altas).</li>
 <li><b>Bayer:</b> «Soporte Facturación Enero/Febrero/Marzo/Abril 2026.xlsx» (resumen 0,5% PVP con mínimo).</li>
 <li><b>AZ (Elegir Salud):</b> «PRESUPUESTO FACTURACION &lt;MES&gt; 2026 - PROGRAMA ELEGIR SALUD» / Proforma editable con ajuste IPC (operación + call center + cápitas + auditorías + supervisor CS).</li>
-<li><b>Sidus Dermo, BIU, Panalab digital:</b> «Facturación Sidus DC, Biu, Panalab, AZ &lt;mes&gt; 2026.xlsx».</li>
-<li><b>Panalab papel:</b> «Bonos Papel Panalab Manual &lt;mes&gt; 2026.xlsx».</li>
+<li><b>Panalab Digital y Papel Digital:</b> «Soporte Facturación Panalab MES &lt;MES&gt; 2026.xlsx» (carátula: bonos digitales + plataforma/WhatsApp + bonos papel on line; coincide con las FC emitidas ene–mar).</li>
+<li><b>Panalab Papel Manual:</b> «Bonos Papel Panalab Manual &lt;mes&gt; 2026.xlsx».</li>
+<li><b>Sidus DC:</b> proforma «Facturación Transaccional Sidus Dermo» + FC 0002-00000370 (abril). <b>BIU (Unyc S.A.):</b> planilla «Seguimiento Facturación». ⚠️ El archivo «Facturación Sidus DC, Biu, Panalab, AZ» registra el <b>costo de Avanter</b> (proveedor) y NO se usa para la facturación a clientes.</li>
 <li><b>Colgate / Max Vision / Sidus Farma / Ceoderma / Lazar:</b> soportes «Soporte Facturación &lt;MES&gt; 2026_&lt;cliente&gt;.xlsx» (carátula).</li>
 <li><b>Health Care:</b> «Facturación Health Care.xlsx» + «Proformas - Resumen Valores sin adjunto».</li>
 <li><b>Planilla «Seguimiento Facturación» (Google Sheet):</b> facturas emitidas por cliente y mes. La factura se emite al mes siguiente del servicio; los montos de Colgate feb, Max Vision feb, Health Care ene/mar y Lazar feb–mar salen de ahí (redondeo a pesos).</li>
