@@ -415,8 +415,6 @@ kpis=f"""
 <div class="kpis">
  <div class="kpi"><div class="kpi-t">Facturación ene–abr</div><div class="kpi-v">{MM(GT_FC)}</div>
    <div class="kpi-s">{m2(GT_FC)} · ingreso por servicio · 4 meses completos</div></div>
- <div class="kpi"><div class="kpi-t">FC emitidas ene–abr</div><div class="kpi-v">$ 455,0 M</div>
-   <div class="kpi-s">$ 454.995.712 en facturas emitidas a laboratorios (sin Iqvia) · la diferencia de −$ 6,9 M está conciliada al peso en «Análisis»</div></div>
  <div class="kpi"><div class="kpi-t">Transacciones informadas</div><div class="kpi-v">{n0(GT_TRX)}</div>
    <div class="kpi-s">TRX aprobadas ene–abr · directos {n0(DIR_TRX)} + Avanter {n0(AV_T)}</div></div>
  <div class="kpi"><div class="kpi-t">Mejor mes</div><div class="kpi-v">{MESN[mejor["mes"]]}</div>
