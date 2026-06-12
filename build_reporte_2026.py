@@ -14,13 +14,13 @@ MESES = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO",
 ACTIVOS = {"ENERO","FEBRERO","MARZO","ABRIL"}
 M4 = ["ENERO","FEBRERO","MARZO","ABRIL"]
 
-# Valor unitario Avanter por mes (laboratorios viejos). Marzo: sin archivo.
-AVU = {"ENERO":74.0,"FEBRERO":74.0,"MARZO":None,"ABRIL":93.0}
+# Valor unitario Avanter por mes (laboratorios viejos)
+AVU = {"ENERO":74.0,"FEBRERO":74.0,"MARZO":74.0,"ABRIL":93.0}
 
 # Totales consolidados Avanter según archivos oficiales "Facturación Avanter <mes>"
-# ABRIL incluye altas ENA + Convatec ($547.420,80 c/u). MARZO: archivo no disponible.
+# ABRIL incluye altas ENA + Convatec ($547.420,80 c/u).
 AV_CONSOL = {"ENERO":(881068,65199032.00),"FEBRERO":(587574,43480476.00),
-             "MARZO":None,"ABRIL":(488187,46496232.59)}
+             "MARZO":(532345,39393530.00),"ABRIL":(488187,46496232.59)}
 
 def av(cod, prog, lab, fc, status, e, f, m, a, precio="Facturado vía Avanter - valor unitario por TRX"):
     """Fila Avanter: TRX ene/feb/mar/abr -> monto = trx*VU del mes."""
@@ -104,44 +104,35 @@ GRUPOS = [
       "Abono startup; luego % PVP con mínimo","Mensual","STARTUP",
       {"ENERO":(None,500000.00),"FEBRERO":None,"MARZO":None,"ABRIL":(252,344079.51)}),
  ]),
- ("PROVINCIA ART (nuevo 2026)", [
-   dr("5310","Provincia ART","PROVINCIA ART","SI","NO",
-      "0,35% sobre monto vendido","Mensual","PRODUCTIVO",
-      {"ENERO":(8166,1073509.30),"FEBRERO":None,
-       "MARZO":(8692,1293685.98),"ABRIL":(8849,1471007.21)}),
- ]),
- ("SERDATA (nuevo 2026)", [
-   dr("5320","Serdata (Bonos)","SERDATA","SI","NO",
-      "Valor unitario por bono procesado","Mensual","PRODUCTIVO",
-      {"ENERO":None,"FEBRERO":(76676,4544586.52),"MARZO":None,"ABRIL":None}),
- ]),
+ # NOTA: Provincia ART (convenio, no laboratorio) y Serdata (proveedor, no cliente)
+ # quedan EXCLUIDOS de este reporte de laboratorios por definición del negocio.
  ("AVANTER", [
-   av("5004","Programa TEVAcuidar (TEVA)","TEVA","SI - ETICOS","PRODUCTIVO",147,135,None,150),
-   av("5010","Bonos Loreal","LOREAL","SI - DINAMICAS - BONOS","PRODUCTIVO",91364,74721,None,67206),
-   av("5011","Programa Beneficiarte (Ferring)","FERRING","SI - ETICOS","PRODUCTIVO",453,394,None,484),
-   av("5014","Programa Rossmore","ROSSMORE","SI - ETICOS","PRODUCTIVO",1549,1437,None,1683),
-   av("5020","Bonos Eucerin","BEIERSDORF","SI - DINAMICAS - BONOS","PRODUCTIVO",42157,30505,None,29074),
-   av("5022","Ofertas Casasco","CASASCO","SI - DINAMICAS - BONOS","PRODUCTIVO",34587,28811,None,25273),
-   av("5023","Programa Farmaspen (Aspen)","ASPEN","SI - ETICOS","PRODUCTIVO",1991,1778,None,2285),
-   av("5024","Nutricia Siempre Juntos (Bagó)","BAGO","SI - ETICOS","PRODUCTIVO",387,329,None,421),
-   av("5027","Programa Vari Te Acerca (Varifarma)","VARIFARMA","SI - ETICOS","PRODUCTIVO",7,6,None,8),
-   av("5050","Bonos Andrómaco","ANDROMACO","SI - DINAMICAS - BONOS","PRODUCTIVO",554837,336212,None,260641),
-   av("5060","Bonos Isdin","ISDIN","SI - DINAMICAS - BONOS","PRODUCTIVO",40175,25065,None,18937),
-   av("5090","Bonos Galderma","GALDERMA","SI - DINAMICAS - BONOS","PRODUCTIVO",10966,7941,None,9934),
-   av("5100","Bonos Bernabo","BERNABO","SI - DINAMICAS - BONOS","PRODUCTIVO",4458,4207,None,4464),
-   av("5110","Bonos Eurolab","EUROLAB","SI - DINAMICAS - BONOS","PRODUCTIVO",26534,24819,None,31434),
+   av("5004","Programa TEVAcuidar (TEVA)","TEVA","SI - ETICOS","PRODUCTIVO",147,135,172,150),
+   av("5010","Bonos Loreal","LOREAL","SI - DINAMICAS - BONOS","PRODUCTIVO",91364,74721,75325,67206),
+   av("5011","Programa Beneficiarte (Ferring)","FERRING","SI - ETICOS","PRODUCTIVO",453,394,518,484),
+   av("5014","Programa Rossmore","ROSSMORE","SI - ETICOS","PRODUCTIVO",1549,1437,1708,1683),
+   av("5020","Bonos Eucerin","BEIERSDORF","SI - DINAMICAS - BONOS","PRODUCTIVO",42157,30505,34604,29074),
+   av("5022","Ofertas Casasco","CASASCO","SI - DINAMICAS - BONOS","PRODUCTIVO",34587,28811,28256,25273),
+   av("5023","Programa Farmaspen (Aspen)","ASPEN","SI - ETICOS","PRODUCTIVO",1991,1778,2097,2285),
+   av("5024","Nutricia Siempre Juntos (Bagó)","BAGO","SI - ETICOS","PRODUCTIVO",387,329,383,421),
+   av("5027","Programa Vari Te Acerca (Varifarma)","VARIFARMA","SI - ETICOS","PRODUCTIVO",7,6,8,8),
+   av("5050","Bonos Andrómaco","ANDROMACO","SI - DINAMICAS - BONOS","PRODUCTIVO",554837,336212,274190,260641),
+   av("5060","Bonos Isdin","ISDIN","SI - DINAMICAS - BONOS","PRODUCTIVO",40175,25065,21680,18937),
+   av("5090","Bonos Galderma","GALDERMA","SI - DINAMICAS - BONOS","PRODUCTIVO",10966,7941,10088,9934),
+   av("5100","Bonos Bernabo","BERNABO","SI - DINAMICAS - BONOS","PRODUCTIVO",4458,4207,4609,4464),
+   av("5110","Bonos Eurolab","EUROLAB","SI - DINAMICAS - BONOS","PRODUCTIVO",26534,24819,30701,31434),
    # Ceoderma operó vía Avanter en enero (355 TRX en el archivo oficial de Avanter)
    av("5120","Eximia Cepage (Ceoderma) - vía Avanter","CEODERMA","SI - ETICOS","PRODUCTIVO",355,None,None,None),
-   av("5130","Bonos Cassara","CASSARA","SI - DINAMICAS - BONOS","PRODUCTIVO",8603,7894,None,9823),
-   av("5140","Bonos Bagó","BAGO","SI - DINAMICAS - BONOS","PRODUCTIVO",54581,35663,None,15759),
-   av("5150","Bonos Caviahue","CAVIAHUE","SI - DINAMICAS - BONOS","PRODUCTIVO",1002,982,None,2593),
-   av("5160","Bonos By Derm","BYDERM","SI - DINAMICAS - BONOS","PRODUCTIVO",5461,5116,None,6100),
-   av("5170","Bonos Bioderma","BIODERMA","SI - DINAMICAS - BONOS","PRODUCTIVO",1129,1053,None,1462),
-   av("5180","Bonos Biferdil","BIFERDIL","SI - DINAMICAS - BONOS","STARTUP",10,12,None,22),
-   av("5190","Bonos Fresenius","FRESENIUS","SI - DINAMICAS - BONOS","STARTUP",47,38,None,107),
-   av("5200","Bonos SC Johnson","SC JHONSON","SI - DINAMICAS - BONOS","STARTUP",16,20,None,6),
-   av("5210","Bonos Pharmatrix","PHARMATRIX","SI - DINAMICAS - BONOS","STARTUP",85,80,None,320),
-   av("5220","Bonos Megalabs","MEGALABS","SI - DINAMICAS - BONOS","STARTUP",0,0,None,None),
+   av("5130","Bonos Cassara","CASSARA","SI - DINAMICAS - BONOS","PRODUCTIVO",8603,7894,9727,9823),
+   av("5140","Bonos Bagó","BAGO","SI - DINAMICAS - BONOS","PRODUCTIVO",54581,35663,29614,15759),
+   av("5150","Bonos Caviahue","CAVIAHUE","SI - DINAMICAS - BONOS","PRODUCTIVO",1002,982,804,2593),
+   av("5160","Bonos By Derm","BYDERM","SI - DINAMICAS - BONOS","PRODUCTIVO",5461,5116,6240,6100),
+   av("5170","Bonos Bioderma","BIODERMA","SI - DINAMICAS - BONOS","PRODUCTIVO",1129,1053,1289,1462),
+   av("5180","Bonos Biferdil","BIFERDIL","SI - DINAMICAS - BONOS","STARTUP",10,12,14,22),
+   av("5190","Bonos Fresenius","FRESENIUS","SI - DINAMICAS - BONOS","STARTUP",47,38,46,107),
+   av("5200","Bonos SC Johnson","SC JHONSON","SI - DINAMICAS - BONOS","STARTUP",16,20,24,6),
+   av("5210","Bonos Pharmatrix","PHARMATRIX","SI - DINAMICAS - BONOS","STARTUP",85,80,248,320),
+   av("5220","Bonos Megalabs","MEGALABS","SI - DINAMICAS - BONOS","STARTUP",0,0,0,None),
    av("5230","Bonos Siegfried","SIEGFRIED","SI - DINAMICAS - BONOS","STARTUP",0,None,None,None),
    av("5240","Bonos Raisse","RAISSE","SI - DINAMICAS - BONOS","STARTUP",167,356,None,None),
    av("5250","Bonos Siscom (Rayito de Sol)","SISCOM","SI - DINAMICAS - BONOS","STARTUP",0,0,None,1),
@@ -412,13 +403,13 @@ mejor=max(month_rows,key=lambda rr:rr["tm"])
 kpis=f"""
 <div class="kpis">
  <div class="kpi"><div class="kpi-t">Facturación ene–abr</div><div class="kpi-v">{MM(GT_FC)}</div>
-   <div class="kpi-s">{m2(GT_FC)} · <b class="warn">marzo sin Avanter (s/d)</b></div></div>
+   <div class="kpi-s">{m2(GT_FC)} · 4 meses completos</div></div>
  <div class="kpi"><div class="kpi-t">Transacciones informadas</div><div class="kpi-v">{n0(GT_TRX)}</div>
-   <div class="kpi-s">TRX aprobadas · marzo solo clientes directos</div></div>
+   <div class="kpi-s">TRX aprobadas ene–abr · directos {n0(DIR_TRX)} + Avanter {n0(AV_T)}</div></div>
  <div class="kpi"><div class="kpi-t">Mejor mes</div><div class="kpi-v">{MESN[mejor["mes"]]}</div>
    <div class="kpi-s">{m0(mejor["tm"])} facturados · {n0(mejor["tt"])} TRX</div></div>
  <div class="kpi"><div class="kpi-t">Cartera</div><div class="kpi-v">{n_dir} + Avanter</div>
-   <div class="kpi-s">{n_dir} clientes directos · {av_activos} laboratorios activos vía Avanter · Nuevos 2026: Lazar, Provincia ART, Serdata + altas ENA y Convatec</div></div>
+   <div class="kpi-s">{n_dir} clientes directos · {av_activos} laboratorios activos vía Avanter · Nuevos 2026: Lazar + altas ENA y Convatec (Avanter)</div></div>
 </div>"""
 
 # ---- Resumen: reporte mensual ----
@@ -453,7 +444,7 @@ for rr in month_rows:
         nota=' <small class="warn">Avanter s/d</small>'
     chart+=f'<div class="brow"><span class="blab">{MESN[rr["mes"]]}</span><div class="btrack">{segs}</div><span class="bval">{MM(rr["tm"])}{nota}</span></div>'
 chart+="""<div class="legend"><span><i class="dot d"></i>Clientes directos</span>
-<span><i class="dot a"></i>Avanter</span><span><i class="dot x"></i>Sin dato (marzo Avanter)</span></div>"""
+<span><i class="dot a"></i>Avanter</span></div>"""
 
 # ---- Resumen: top clientes ----
 maxm=CLITOT[0][2]
@@ -470,13 +461,10 @@ alertas="""
 <div class="alert">
  <b>⚠️ Datos pendientes que afectan los totales</b>
  <ul>
-  <li><b>Avanter marzo:</b> no está el archivo "Facturación Avanter Marzo 2026" → el total de marzo
-      no incluye Avanter (referencia: facturó $ 65,2 M en enero y $ 43,5 M en febrero).</li>
   <li><b>Febrero:</b> sin soporte de Colgate, Max Vision, Sidus Farma y Ceoderma.</li>
-  <li><b>Ceoderma:</b> solo enero · <b>Serdata:</b> solo febrero · <b>Health Care:</b> montos sin TRX y enero pendiente
-      · <b>Lazar:</b> sin feb–mar.</li>
+  <li><b>Ceoderma:</b> solo enero · <b>Health Care:</b> montos sin TRX y enero pendiente · <b>Lazar:</b> sin feb–mar.</li>
  </ul>
- <small>El detalle completo está en la sección «Fuentes y Datos».</small>
+ <small>✅ Avanter marzo ya incorporado (532.345 TRX × $74 = $ 39.393.530). El detalle completo está en «Fuentes y Datos».</small>
 </div>"""
 
 # ---- Clientes Directos: tabla detalle ----
@@ -549,8 +537,7 @@ for L,at,am in av_data:
     cells=f'<td class="cod">{L["cod"]}</td><td class="l"><b>{_html.escape(L["prog"])}</b><br><small>{_html.escape(L["lab"])}</small></td><td class="c sm">{tipo}</td>'
     for mes in M4:
         v=L["m"].get(mes)
-        if mes=="MARZO": cells+=f'<td class="n inact">{SD}</td>'
-        elif v is None or v[0] is None: cells+=f'<td class="n">–</td>'
+        if v is None or v[0] is None: cells+=f'<td class="n">–</td>'
         else: cells+=f'<td class="n">{n0(v[0])}</td>'
     share=at/AV_T if AV_T else 0
     cells+=f'<td class="n b">{n0(at)}</td>'
@@ -558,7 +545,7 @@ for L,at,am in av_data:
     cells+=f'<td class="n">{pctf(share,2)}</td><td class="n">{m0(am) if am else "–"}</td>'
     av_rows+=f"<tr>{cells}</tr>"
 av_rows+=f"""<tr class="tot"><td></td><td class="l">TOTAL AVANTER (facturado oficial)</td><td></td>
- <td class="n">{n0(881068)}</td><td class="n">{n0(587574)}</td><td class="n">{SD}</td><td class="n">{n0(488187)}</td>
+ <td class="n">{n0(881068)}</td><td class="n">{n0(587574)}</td><td class="n">{n0(532345)}</td><td class="n">{n0(488187)}</td>
  <td class="n">{n0(AV_T)}</td><td></td><td class="n">100%</td><td class="n">{m0(AV_M)}</td></tr>"""
 
 altas_rows=""
@@ -696,7 +683,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <thead><tr><th rowspan="2">Mes</th><th colspan="2" class="mes">Clientes directos</th><th colspan="2" class="mes">Avanter</th><th colspan="2" class="mes">Total</th><th rowspan="2">$ prom / TRX</th></tr>
 <tr><th class="sub">TRX</th><th class="sub">Facturación</th><th class="sub">TRX</th><th class="sub">Facturación</th><th class="sub">TRX</th><th class="sub">Facturación</th></tr></thead>
 <tbody>{mt_rows}</tbody></table></div>
-<p class="note">El total de <b>marzo no incluye Avanter</b> (archivo del mes no disponible). El $ promedio/TRX se calcula sobre TRX informadas; incluye conceptos sin TRX (abonos, plataformas, altas).</p>
+<p class="note">El $ promedio/TRX se calcula sobre TRX informadas; incluye conceptos sin TRX (abonos, plataformas, altas).</p>
 
 <h2>Facturación por mes</h2>
 <div class="chartbox">{chart}</div>
@@ -711,7 +698,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <!-- ============ CLIENTES DIRECTOS ============ -->
 <div class="pane" id="p1">
 <h2>Detalle por cliente y programa</h2>
-<p class="note">Cada programa con su modelo de cobro y la facturación mensual. «s/d» = sin archivo/soporte para ese mes. Las filas celestes son subtotales por cliente; la amarilla, el total general.</p>
+<p class="note">Cada programa con su modelo de cobro y la facturación mensual. «s/d» = sin archivo/soporte para ese mes. Las filas celestes son subtotales por cliente; la amarilla, el total general. Provincia ART (convenio de servicios) y Serdata (proveedor) quedan excluidos de este reporte de laboratorios.</p>
 <div class="scroll"><table>
 <thead><tr><th rowspan="2">Código</th><th rowspan="2">Programa / Laboratorio</th><th rowspan="2">Modelo de cobro</th><th rowspan="2">Status</th>{dir_head_months}<th colspan="4" class="mes" style="background:var(--azul1)">ACUMULADO ene–abr</th></tr>
 <tr>{dir_sub}<th class="sub">TRX</th><th class="sub">Monto FC</th><th class="sub">$/TRX</th><th class="sub">% FC total</th></tr></thead>
@@ -722,12 +709,12 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <div class="pane" id="p2">
 <div class="kpis">
  <div class="kpi"><div class="kpi-t">Facturado Avanter ene–abr</div><div class="kpi-v">{MM(AV_M)}</div><div class="kpi-s">{m2(AV_M)} · {pctf(AV_M/GT_FC)} del total general</div></div>
- <div class="kpi"><div class="kpi-t">TRX Avanter</div><div class="kpi-v">{n0(AV_T)}</div><div class="kpi-s">Ene 881.068 · Feb 587.574 · Mar s/d · Abr 488.187</div></div>
- <div class="kpi"><div class="kpi-t">Valor unitario por TRX</div><div class="kpi-v">$74 → $93</div><div class="kpi-s">Ene–Feb $74,00 · Abr $93,00 (ajuste trimestral IPC INDEC) · Marzo s/d</div></div>
+ <div class="kpi"><div class="kpi-t">TRX Avanter</div><div class="kpi-v">{n0(AV_T)}</div><div class="kpi-s">Ene 881.068 · Feb 587.574 · Mar 532.345 · Abr 488.187</div></div>
+ <div class="kpi"><div class="kpi-t">Valor unitario por TRX</div><div class="kpi-v">$74 → $93</div><div class="kpi-s">Ene–Mar $74,00 · Abr $93,00 (ajuste trimestral IPC INDEC)</div></div>
  <div class="kpi"><div class="kpi-t">Altas abril</div><div class="kpi-v">ENA + Convatec</div><div class="kpi-s">$ 547.420,80 c/u (alta laboratorio nuevo) = $ 1.094.841,59</div></div>
 </div>
 <h2>TRX por laboratorio</h2>
-<p class="note">Ordenado por TRX acumuladas. <b>Marzo sin desglose</b> (columna gris). Monto FC = TRX × valor unitario del mes. El % es sobre el total de TRX Avanter informadas.</p>
+<p class="note">Ordenado por TRX acumuladas. Monto FC = TRX × valor unitario del mes. El % es sobre el total de TRX Avanter informadas. «–» = el laboratorio no figura en el archivo de ese mes.</p>
 <div class="scroll"><table>
 <thead><tr><th>Código</th><th>Laboratorio / Programa</th><th>Tipo</th><th>TRX Ene</th><th>TRX Feb</th><th>TRX Mar</th><th>TRX Abr</th><th>TRX acum.</th><th>Participación</th><th>%</th><th>Monto FC acum.</th></tr></thead>
 <tbody>{av_rows}</tbody></table></div>
@@ -756,7 +743,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <li><b>Panalab</b> es el cliente directo más grande ({m0(66225682.10)}): el papel manual crece todos los meses (+67% TRX abr vs ene) y la plataforma digital aporta ~$6,6–8,6 M/mes por WhatsApp + servicio.</li>
 <li><b>Sidus Dermo</b> casi duplicó TRX en abril (2.333 → 4.879) e incorporó armado de dinámicas.</li>
 <li><b>AZ</b> subió el abono MAT a $ 2.518.000 y el VU a $93 en abril: +23% de facturación vs enero.</li>
-<li>La caída de abril vs enero en el total (−10%) se explica por menos TRX Avanter (881 mil → 488 mil), parcialmente compensada por el VU $74 → $93.</li>
+<li>La caída de abril vs enero en el total (−10%) se explica por menos TRX Avanter (881 mil → 588 mil → 532 mil → 488 mil), parcialmente compensada por el VU $74 → $93.</li>
 </ul></div>
 </div>
 </div>
@@ -765,19 +752,19 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <div class="pane" id="p4">
 <h2>Datos pendientes (impactan los totales)</h2>
 <div class="card"><ul class="clean">
-<li>🔴 <b>Avanter marzo:</b> falta el archivo «Facturación Avanter Marzo 2026». Sin él, marzo no tiene TRX por laboratorio ni total consolidado. Es el faltante de mayor impacto (Avanter facturó $ 65,2 M en enero y $ 43,5 M en febrero).</li>
+<li>✅ <b>Avanter:</b> 4 meses completos (marzo incorporado: 532.345 TRX × $74 = $ 39.393.530).</li>
 <li>🟠 <b>Febrero:</b> sin soporte de <b>Colgate</b>, <b>Max Vision</b>, <b>Sidus Farma</b> (aplicaría su mínimo de $ 766.721,67) y <b>Ceoderma</b>.</li>
 <li>🟠 <b>Ceoderma:</b> solo enero disponible (feb–abr s/d). En enero además registró 355 TRX vía Avanter, ya incluidas en el consolidado Avanter.</li>
-<li>🟡 <b>Health Care (Haleon + Luar):</b> montos de feb y abr sin cantidad de TRX. Enero pendiente de confirmar: el archivo «Facturación Health Care» muestra componentes ene-26 por $ 449.969,36 y $ 371.875,50 que no se sumaron por ambigüedad.</li>
-<li>🟡 <b>Serdata:</b> solo febrero informado (76.676 bonos × $ 59,27).</li>
+<li>🟡 <b>Health Care (Haleon + Luar):</b> montos de feb y abr sin cantidad de TRX; marzo s/d. Enero pendiente de confirmar: el archivo «Facturación Health Care» muestra componentes ene-26 por $ 449.969,36 y $ 371.875,50 que no se sumaron por ambigüedad.</li>
 <li>🟡 <b>Lazar:</b> enero $ 500.000 (startup fase 1) y abril $ 344.079,51 (mínimo facturable); feb–mar s/d.</li>
+<li>ℹ️ <b>Excluidos por definición:</b> Provincia ART (convenio de servicios, no laboratorio) y Serdata (proveedor de procesamiento, no cliente).</li>
 </ul></div>
 
 <h2>Parámetros de facturación vigentes</h2>
 <div class="cols2">
 <div class="card"><b style="color:var(--azul1)">Valores y mínimos</b>
 <ul class="clean">
-<li><b>VU Avanter:</b> Ene $74,00 · Feb $74,00 · Mar s/d · Abr $93,00 (ajuste trimestral por IPC INDEC).</li>
+<li><b>VU Avanter:</b> Ene–Mar $74,00 · Abr $93,00 (ajuste trimestral por IPC INDEC).</li>
 <li><b>Alta laboratorio nuevo (Avanter):</b> base dic-25 $ 500.000 → IPC ene +2,90% ($ 514.500) → feb +2,90% ($ 529.420,50) → mar +3,40% (<b>$ 547.420,80</b>, aplicado a ENA y Convatec).</li>
 <li><b>Mínimo Sidus Farma:</b> $ 766.721,67 (aplicó en ene/mar/abr: el 1% PVP quedó debajo).</li>
 <li><b>Mínimo Bayer:</b> $ 801.411,81 (ene–feb) / $ 844.447,62 (mar–abr). No aplicó: facturó por 0,50% PVP.</li>
@@ -796,12 +783,12 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 
 <h2>Fuentes (carpeta PROFORMAS – Drive)</h2>
 <div class="card"><ul class="clean">
-<li><b>Avanter:</b> «Facturación Avanter Enero/Febrero/Abril 2026.xlsx» (TRX por laboratorio + VU + altas).</li>
+<li><b>Avanter:</b> «Facturación Avanter Enero/Febrero/Marzo/Abril 2026.xlsx» (TRX por laboratorio + VU + altas).</li>
 <li><b>Bayer:</b> «Soporte Facturación Enero/Febrero/Marzo/Abril 2026.xlsx» (resumen 0,5% PVP con mínimo).</li>
 <li><b>AZ, Sidus Dermo, BIU, Panalab digital:</b> «Facturación Sidus DC, Biu, Panalab, AZ &lt;mes&gt; 2026.xlsx».</li>
 <li><b>Panalab papel:</b> «Bonos Papel Panalab Manual &lt;mes&gt; 2026.xlsx».</li>
-<li><b>Colgate / Max Vision / Sidus Farma / Ceoderma / Lazar / Provincia ART:</b> soportes «Soporte Facturación &lt;MES&gt; 2026_&lt;cliente&gt;.xlsx» (carátula).</li>
-<li><b>Serdata:</b> «Facturación SERDATA Febrero 2026.xlsx» · <b>Health Care:</b> «Facturación Health Care.xlsx» + «Proformas - Resumen Valores sin adjunto».</li>
+<li><b>Colgate / Max Vision / Sidus Farma / Ceoderma / Lazar:</b> soportes «Soporte Facturación &lt;MES&gt; 2026_&lt;cliente&gt;.xlsx» (carátula).</li>
+<li><b>Health Care:</b> «Facturación Health Care.xlsx» + «Proformas - Resumen Valores sin adjunto».</li>
 </ul>
 <p class="note">Metodología: montos sin IVA tomados de las carátulas/resúmenes de cada soporte. Avanter: monto = TRX × VU del mes (coincide con el total facturado oficial). Sidus Dermo y Panalab digital suman bonos + uso de plataforma + WhatsApp.</p></div>
 </div>
@@ -830,7 +817,7 @@ hdr=["Código","Programa","Laboratorio","Lab. Propio","Avanter Proveedor",
      "FC POR AVANTER","Precio","Actualización","Status"]
 for m in MESES+["ANUAL (ene-abr)"]:
     hdr+=[f"{m} TRX",f"{m} % TRX MES",f"{m} MONTO FC",f"{m} MONTO X TRX"]
-rows=[["REPORTE LABOS 2026 - Seguimiento por Cliente (ene-abr) | Montos ARS sin IVA | s/d Avanter marzo y feb de Colgate/MaxVision/SidusFarma/Ceoderma"],[],hdr]
+rows=[["REPORTE LABOS 2026 - Seguimiento por Cliente (ene-abr) | Montos ARS sin IVA | s/d: feb de Colgate/MaxVision/SidusFarma/Ceoderma; Ceoderma feb-abr | Excluidos: Provincia ART (convenio) y Serdata (proveedor)"],[],hdr]
 for cliente,labs in GRUPOS:
     rows.append([f"CLIENTE: {cliente}"])
     for L in labs:
