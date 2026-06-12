@@ -666,7 +666,7 @@ footer{{text-align:center;font-size:11.5px;color:var(--gris);padding:16px}}
 ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 </style></head><body>
 <header><h1>📊 Reporte Laboratorios 2026 — Seguimiento por Cliente</h1>
-<p>Enero – Abril 2026 · Montos en ARS sin IVA · TRX = transacciones / envases aprobados · Actualizado al {FECHA}</p></header>
+<p>Enero – Abril 2026 · Montos en ARS netos (sin IVA) · TRX = transacciones / envases aprobados · Actualizado al {FECHA}</p></header>
 <div class="tabs">
 <button class="on" onclick="sel(0)">Resumen</button>
 <button onclick="sel(1)">Clientes Directos</button>
@@ -678,6 +678,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <!-- ============ RESUMEN ============ -->
 <div class="pane on" id="p0">
 {kpis}
+<div class="alert" style="background:#eef6ff;border-color:#9cc4ec;border-left-color:var(--azul2)"><b>💡 Importante — valores netos sin IVA.</b> Todos los montos de este reporte son <b>precios netos (sin IVA)</b>, tal como figuran en los soportes de facturación. Para emitir factura se agrega <b>IVA 21%</b> y, según el cliente/jurisdicción, <b>percepciones de IIBB</b>. Ejemplo: AstraZeneca abril $ 21.786.516,13 neto → $ 26.361.684,52 con IVA.</div>
 <h2>Reporte mensual</h2>
 <div class="scroll" style="max-height:none"><table>
 <thead><tr><th rowspan="2">Mes</th><th colspan="2" class="mes">Clientes directos</th><th colspan="2" class="mes">Avanter</th><th colspan="2" class="mes">Total</th><th rowspan="2">$ prom / TRX</th></tr>
@@ -791,7 +792,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <li><b>Colgate / Max Vision / Sidus Farma / Ceoderma / Lazar:</b> soportes «Soporte Facturación &lt;MES&gt; 2026_&lt;cliente&gt;.xlsx» (carátula).</li>
 <li><b>Health Care:</b> «Facturación Health Care.xlsx» + «Proformas - Resumen Valores sin adjunto».</li>
 </ul>
-<p class="note">Metodología: montos sin IVA tomados de las carátulas/resúmenes de cada soporte. Avanter: monto = TRX × VU del mes (coincide con el total facturado oficial). Sidus Dermo y Panalab digital suman bonos + uso de plataforma + WhatsApp.</p></div>
+<p class="note">Metodología: montos <b>netos sin IVA</b> tomados de las carátulas/resúmenes de cada soporte (coinciden con el «Importe sin impuestos» de cada factura). Para facturar se agrega IVA 21% + percepciones IIBB según corresponda. Avanter: monto = TRX × VU del mes (coincide con el total facturado oficial). Sidus Dermo y Panalab digital suman bonos + uso de plataforma + WhatsApp.</p></div>
 </div>
 
 <footer>Reporte Laboratorios 2026 · World Salud · Generado automáticamente desde los soportes de facturación (carpeta PROFORMAS) · Actualizado al {FECHA}</footer>
