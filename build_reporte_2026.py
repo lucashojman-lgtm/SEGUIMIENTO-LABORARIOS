@@ -84,10 +84,10 @@ GRUPOS = [
        "MARZO":(6019,1368036.90),"ABRIL":(6040,1378201.65)}),
  ]),
  ("BIU", [
-   dr("5070","Bonos BIU Cosmeceuticals","BIU","SI","SI",
+   dr("5070","Bonos BIU Cosmeceuticals (Unyc S.A.)","BIU","SI","SI",
       "Valor fijo por operación","Trimestral por IPC CABA","PRODUCTIVO",
-      {"ENERO":(22,1628.00),"FEBRERO":(20,1480.00),
-       "MARZO":(21,1554.00),"ABRIL":(9,837.00)}),
+      {"ENERO":(22,9033.00),"FEBRERO":(20,7296.00),
+       "MARZO":(21,8322.00),"ABRIL":(9,3404.00)}),
  ]),
  ("CEODERMA", [
    dr("5120","Programa Eximia Cepage (Ceoderma)","CEODERMA","SI","NO",
@@ -104,8 +104,9 @@ GRUPOS = [
       "Abono startup; luego % PVP con mínimo","Mensual","STARTUP",
       {"ENERO":(None,500000.00),"FEBRERO":(None,500000.00),"MARZO":(None,500000.00),"ABRIL":(252,344079.51)}),
  ]),
- # NOTA: Provincia ART (convenio, no laboratorio) y Serdata (proveedor, no cliente)
- # quedan EXCLUIDOS de este reporte de laboratorios por definición del negocio.
+ # NOTA: Provincia ART (convenio, no laboratorio), Serdata (proveedor) e Iqvia
+ # (pago anual, no bonos mensuales) quedan EXCLUIDOS de este reporte por definición.
+ # «Unyc S.A.» en la planilla de facturación = razón social de BIU (ya cargado arriba).
  ("AVANTER", [
    av("5004","Programa TEVAcuidar (TEVA)","TEVA","SI - ETICOS","PRODUCTIVO",147,135,172,150),
    av("5010","Bonos Loreal","LOREAL","SI - DINAMICAS - BONOS","PRODUCTIVO",91364,74721,75325,67206),
@@ -757,7 +758,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <li>✅ <b>Completados desde la planilla «Seguimiento Facturación»</b> (montos por factura emitida; el servicio se factura al mes siguiente): Colgate feb $ 1.740.460 · Max Vision feb $ 1.188.815 · Health Care ene $ 971.876 y mar $ 904.782 · Lazar feb y mar $ 500.000 c/u. TRX de esos meses: s/d.</li>
 <li>✅ <b>Sidus Farma febrero:</b> cargado $ 131.941 (valor factura según planilla; mes por debajo del mínimo habitual). <b>Sidus Dermo abril:</b> corregido a $ 3.633.862,44 / 4.445 TRX según proforma oficial y FC 0002-00000370 (transaccional + plataforma + WhatsApp).</li>
 <li>🟠 <b>Ceoderma:</b> febrero $ 0 facturado (confirmado en planilla); mar–abr s/d. En enero además registró 355 TRX vía Avanter, ya incluidas en el consolidado Avanter.</li>
-<li>ℹ️ <b>Excluidos por definición:</b> Provincia ART (convenio de servicios, no laboratorio) y Serdata (proveedor de procesamiento, no cliente).</li>
+<li>ℹ️ <b>Excluidos por definición:</b> Provincia ART (convenio de servicios, no laboratorio), Serdata (proveedor de procesamiento, no cliente) e <b>Iqvia Solutions</b> (pago anual, no programa de bonos mensual). Nota: «Unyc S.A.» en la planilla de facturación es la razón social de <b>BIU</b>.</li>
 </ul></div>
 
 <h2>Parámetros de facturación vigentes</h2>
