@@ -39,5 +39,11 @@
   call center + cápitas + auditorías + supervisor CS), NO la línea de Avanter. Totales:
   ene $20.929.743,55 · feb $19.689.476,25 · mar $21.612.629,37 · abr $21.786.516,13.
   Fuente: «PRESUPUESTO FACTURACION ‹MES› 2026 - PROGRAMA ELEGIR SALUD» / Proforma editable IPC CABA.
+- BIU = razón social «Unyc S.A.» en la planilla (FC reales: ene $9.033 · feb $7.296 ·
+  mar $8.322 · abr $3.404). Iqvia Solutions ($242.021.032, servicio ene): EXCLUIDO, pago anual.
+- Conciliación (pestaña Análisis): FC emitidas a labos ene–abr sin Iqvia $454.995.712;
+  dif. $77,5M vs reporte = Panalab reintegro bonos +$79,4M · Dermo NC feb −$2,8M ·
+  Sidus Farma FCs $500k mar/abr +$1,0M · Avanter/Ceoderma −$26.270. Con Iqvia: $697.016.744.
 - Faltantes restantes: Ceoderma mar–abr (feb = $0 facturado);
-  TRX de Colgate feb, Max Vision feb, Sidus Farma feb, Health Care (todos) y Lazar feb–mar.
+  TRX de Colgate feb, Max Vision feb, Sidus Farma feb, Health Care (todos) y Lazar feb–mar;
+  concepto de las FC Sidus S.A. de $500.000 (servicio mar y abr) a confirmar.
