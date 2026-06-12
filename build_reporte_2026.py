@@ -55,10 +55,10 @@ GRUPOS = [
    dr("5040","Sidus Dermo (Bonos + Plataforma digital)","SIDUS DERMO","SI","SI",
       "Valor fijo por operación + plataforma + WhatsApp","Mensual por IPC Indec. Valor por TRX","PRODUCTIVO",
       {"ENERO":(2522,1282897.00),"FEBRERO":(2281,1255491.00),
-       "MARZO":(2333,1330813.00),"ABRIL":(4879,2298686.15)}),
+       "MARZO":(2333,1330813.00),"ABRIL":(4445,3633862.44)}),
    dr("5041","Programa Convida (Sidus Farma)","SIDUS FARMA","SI","NO",
       "Automático por 1,00% PVP. Con mínimo $766.721,67","Mensual","PRODUCTIVO",
-      {"ENERO":(688,766721.67),"FEBRERO":None,
+      {"ENERO":(688,766721.67),"FEBRERO":(None,131941.00),
        "MARZO":(615,766721.67),"ABRIL":(894,766721.67)}),
  ]),
  ("PANALAB", [
@@ -74,13 +74,13 @@ GRUPOS = [
  ("COLGATE", [
    dr("5028","Bonos de Descuento Colgate","COLGATE","SI","NO",
       "Automático por 1,00% PVP","Mensual","PRODUCTIVO",
-      {"ENERO":(18127,1730226.41),"FEBRERO":None,
+      {"ENERO":(18127,1730226.41),"FEBRERO":(None,1740460.00),
        "MARZO":(23875,2338884.94),"ABRIL":(20351,1876522.43)}),
  ]),
  ("MAX VISION", [
    dr("5025","Programa Max Compromiso (Max Vision)","MAX VISION","SI","NO",
       "Automático por 1,00% PVP","Mensual","PRODUCTIVO",
-      {"ENERO":(6309,1313290.74),"FEBRERO":None,
+      {"ENERO":(6309,1313290.74),"FEBRERO":(None,1188815.00),
        "MARZO":(6019,1368036.90),"ABRIL":(6040,1378201.65)}),
  ]),
  ("BIU", [
@@ -92,17 +92,17 @@ GRUPOS = [
  ("CEODERMA", [
    dr("5120","Programa Eximia Cepage (Ceoderma)","CEODERMA","SI","NO",
       "Automático por 0,60% PVP","Mensual","PRODUCTIVO",
-      {"ENERO":(769,159805.20),"FEBRERO":None,"MARZO":None,"ABRIL":None}),
+      {"ENERO":(769,159805.20),"FEBRERO":(None,0.00),"MARZO":None,"ABRIL":None}),
  ]),
  ("HALEON / HEALTH CARE", [
    dr("5026","Bonos Descuento Haleon + Luar (Health Care)","HALEON","SI","NO",
       "Valor fijo por operación","Fijo. Se ve con Health Care Group","PRODUCTIVO",
-      {"ENERO":None,"FEBRERO":(None,871875.50),"MARZO":None,"ABRIL":(None,952203.02)}),
+      {"ENERO":(None,971876.00),"FEBRERO":(None,871875.50),"MARZO":(None,904782.00),"ABRIL":(None,952203.02)}),
  ]),
  ("LAZAR (nuevo 2026)", [
    dr("5300","Lazar (Fase 1 Startup)","LAZAR","SI","NO",
       "Abono startup; luego % PVP con mínimo","Mensual","STARTUP",
-      {"ENERO":(None,500000.00),"FEBRERO":None,"MARZO":None,"ABRIL":(252,344079.51)}),
+      {"ENERO":(None,500000.00),"FEBRERO":(None,500000.00),"MARZO":(None,500000.00),"ABRIL":(252,344079.51)}),
  ]),
  # NOTA: Provincia ART (convenio, no laboratorio) y Serdata (proveedor, no cliente)
  # quedan EXCLUIDOS de este reporte de laboratorios por definición del negocio.
@@ -461,8 +461,8 @@ alertas="""
 <div class="alert">
  <b>⚠️ Datos pendientes que afectan los totales</b>
  <ul>
-  <li><b>Febrero:</b> sin soporte de Colgate, Max Vision, Sidus Farma y Ceoderma.</li>
-  <li><b>Ceoderma:</b> solo enero · <b>Health Care:</b> montos sin TRX y enero pendiente · <b>Lazar:</b> sin feb–mar.</li>
+  <li><b>Ceoderma:</b> feb $ 0 facturado, mar–abr s/d.</li>
+  <li><b>TRX s/d</b> en Colgate feb, Max Vision feb, Sidus Farma feb, Health Care y Lazar feb–mar.</li>
  </ul>
  <small>✅ Avanter marzo ya incorporado (532.345 TRX × $74 = $ 39.393.530). El detalle completo está en «Fuentes y Datos».</small>
 </div>"""
@@ -741,10 +741,10 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <div class="card"><b style="color:var(--azul1)">Lecturas rápidas</b>
 <ul class="clean">
 <li><b>Avanter</b> explica {pctf(AV_M/GT_FC)} de la facturación; Andrómaco concentra más de la mitad de sus TRX.</li>
-<li><b>Panalab</b> es el cliente directo más grande ({m0(66225682.10)}): el papel manual crece todos los meses (+67% TRX abr vs ene) y la plataforma digital aporta ~$6,6–8,6 M/mes por WhatsApp + servicio.</li>
-<li><b>Sidus Dermo</b> casi duplicó TRX en abril (2.333 → 4.879) e incorporó armado de dinámicas.</li>
+<li><b>Panalab</b> es el segundo cliente directo ({m0(66225682.10)}): el papel manual crece todos los meses (+67% TRX abr vs ene) y la plataforma digital aporta ~$6,6–8,6 M/mes por WhatsApp + servicio.</li>
+<li><b>Sidus Dermo</b> creció fuerte en abril: 2.333 → 4.445 TRX y $ 1,33 M → $ 3,63 M (transaccional + plataforma + WhatsApp, FC 0002-00000370).</li>
 <li><b>AZ (Elegir Salud)</b> es el mayor cliente directo: ~$ 20–22 M/mes por presupuesto integral (operación + call center + cápitas + auditorías + supervisor CS). Febrero bajó a $ 19,7 M por menos cápitas activas adicionales; +4% abr vs ene por ajuste IPC CABA.</li>
-<li>La caída de abril vs enero en el total (−9%) se explica por menos TRX Avanter (881 mil → 588 mil → 532 mil → 488 mil), parcialmente compensada por el VU $74 → $93; AZ se mantiene estable (~$ 21 M/mes).</li>
+<li>La caída de abril vs enero en el total (−8,6%) se explica por menos TRX Avanter (881 mil → 588 mil → 532 mil → 488 mil), parcialmente compensada por el VU $74 → $93; AZ se mantiene estable (~$ 21 M/mes).</li>
 </ul></div>
 </div>
 </div>
@@ -754,10 +754,9 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <h2>Datos pendientes (impactan los totales)</h2>
 <div class="card"><ul class="clean">
 <li>✅ <b>Avanter:</b> 4 meses completos (marzo incorporado: 532.345 TRX × $74 = $ 39.393.530).</li>
-<li>🟠 <b>Febrero:</b> sin soporte de <b>Colgate</b>, <b>Max Vision</b>, <b>Sidus Farma</b> (aplicaría su mínimo de $ 766.721,67) y <b>Ceoderma</b>.</li>
-<li>🟠 <b>Ceoderma:</b> solo enero disponible (feb–abr s/d). En enero además registró 355 TRX vía Avanter, ya incluidas en el consolidado Avanter.</li>
-<li>🟡 <b>Health Care (Haleon + Luar):</b> montos de feb y abr sin cantidad de TRX; marzo s/d. Enero pendiente de confirmar: el archivo «Facturación Health Care» muestra componentes ene-26 por $ 449.969,36 y $ 371.875,50 que no se sumaron por ambigüedad.</li>
-<li>🟡 <b>Lazar:</b> enero $ 500.000 (startup fase 1) y abril $ 344.079,51 (mínimo facturable); feb–mar s/d.</li>
+<li>✅ <b>Completados desde la planilla «Seguimiento Facturación»</b> (montos por factura emitida; el servicio se factura al mes siguiente): Colgate feb $ 1.740.460 · Max Vision feb $ 1.188.815 · Health Care ene $ 971.876 y mar $ 904.782 · Lazar feb y mar $ 500.000 c/u. TRX de esos meses: s/d.</li>
+<li>✅ <b>Sidus Farma febrero:</b> cargado $ 131.941 (valor factura según planilla; mes por debajo del mínimo habitual). <b>Sidus Dermo abril:</b> corregido a $ 3.633.862,44 / 4.445 TRX según proforma oficial y FC 0002-00000370 (transaccional + plataforma + WhatsApp).</li>
+<li>🟠 <b>Ceoderma:</b> febrero $ 0 facturado (confirmado en planilla); mar–abr s/d. En enero además registró 355 TRX vía Avanter, ya incluidas en el consolidado Avanter.</li>
 <li>ℹ️ <b>Excluidos por definición:</b> Provincia ART (convenio de servicios, no laboratorio) y Serdata (proveedor de procesamiento, no cliente).</li>
 </ul></div>
 
@@ -791,6 +790,7 @@ ul.clean{{line-height:1.7;font-size:13px;padding-left:20px;margin:6px 0}}
 <li><b>Panalab papel:</b> «Bonos Papel Panalab Manual &lt;mes&gt; 2026.xlsx».</li>
 <li><b>Colgate / Max Vision / Sidus Farma / Ceoderma / Lazar:</b> soportes «Soporte Facturación &lt;MES&gt; 2026_&lt;cliente&gt;.xlsx» (carátula).</li>
 <li><b>Health Care:</b> «Facturación Health Care.xlsx» + «Proformas - Resumen Valores sin adjunto».</li>
+<li><b>Planilla «Seguimiento Facturación» (Google Sheet):</b> facturas emitidas por cliente y mes. La factura se emite al mes siguiente del servicio; los montos de Colgate feb, Max Vision feb, Health Care ene/mar y Lazar feb–mar salen de ahí (redondeo a pesos).</li>
 </ul>
 <p class="note">Metodología: montos <b>netos sin IVA</b> tomados de las carátulas/resúmenes de cada soporte (coinciden con el «Importe sin impuestos» de cada factura). Para facturar se agrega IVA 21% + percepciones IIBB según corresponda. Avanter: monto = TRX × VU del mes (coincide con el total facturado oficial). Sidus Dermo y Panalab digital suman bonos + uso de plataforma + WhatsApp.</p></div>
 </div>

@@ -27,10 +27,17 @@
 - Montos en ARS sin IVA. TRX = transacciones/envases aprobados del mes.
 
 ## Estado de datos (al 12/06/2026, ene–abr)
-- Total: $370.153.282,00 · 3.004.959 TRX. Avanter completo los 4 meses.
+- Total: $377.426.332,29 · 3.004.525 TRX. Avanter completo los 4 meses.
+- La planilla «Seguimiento Facturación» (Sheet id `17RdCgz50wF5pSqS0GcAKRv4wblUrIBetP-DyF0tEako`)
+  lista facturas por MES DE EMISIÓN; el servicio se factura al mes siguiente (correr 1 columna).
+  De ahí salen: Colgate feb $1.740.460 · Max Vision feb $1.188.815 · Health Care ene $971.876 y
+  mar $904.782 · Lazar feb–mar $500.000 c/u · Sidus Farma feb $131.941 · Ceoderma feb $0.
+- Sidus Dermo abril: $3.633.862,44 / 4.445 TRX (proforma + FC 0002-00000370).
+- Panalab: el reporte muestra SOLO fee/servicio; las FC grandes (~$28-31M) con reintegro de bonos
+  quedan fuera (confirmado por Lucas 12/06/2026).
 - AstraZeneca (Programa Elegir Salud): se carga el presupuesto integral mensual (operación +
   call center + cápitas + auditorías + supervisor CS), NO la línea de Avanter. Totales:
   ene $20.929.743,55 · feb $19.689.476,25 · mar $21.612.629,37 · abr $21.786.516,13.
   Fuente: «PRESUPUESTO FACTURACION ‹MES› 2026 - PROGRAMA ELEGIR SALUD» / Proforma editable IPC CABA.
-- Faltantes: feb de Colgate/Max Vision/Sidus Farma/Ceoderma; Ceoderma mar–abr;
-  Health Care ene (confirmar $449.969,36 + $371.875,50) y mar + TRX; Lazar feb–mar.
+- Faltantes restantes: Ceoderma mar–abr (feb = $0 facturado);
+  TRX de Colgate feb, Max Vision feb, Sidus Farma feb, Health Care (todos) y Lazar feb–mar.
